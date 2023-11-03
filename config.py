@@ -10,7 +10,7 @@ import re
 import socket
 import subprocess
 from typing import List
-from libqtile import layout, bar, widget, hook, qtile
+from libqtile import layout, bar, widget, hook, qtile, extension
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.command import lazy
 from libqtile.widget import Spacer
@@ -55,7 +55,13 @@ keys = [
     Key([mod, "shift"], "e", lazy.spawn("emacs"), desc="Doom Emacs"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
-
+    Key([mod], "s", lazy.run_extension(extension.CommandSet(
+            commands = {
+            "reboot": "reboot",
+            "shutdown" : "shutdown",
+            },
+            dmenu_lines = 2
+    ))),
 # Functions
     Key([mod], "m", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
