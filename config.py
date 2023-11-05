@@ -11,7 +11,7 @@ import socket
 import subprocess
 from typing import List
 from libqtile import layout, bar, widget, hook, qtile, extension
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule, ScratchPad, DropDown
 from libqtile.command import lazy
 from libqtile.widget import Spacer
 from qtile_extras import widget
@@ -48,20 +48,23 @@ keys = [
 
 # The Essentials
     Key([mod], "r", lazy.spawncmd(), desc="Spawn prompt widget"),
-    Key([mod], "Return", lazy.spawn(myTerm), desc="Terminal"),
+    Key([mod], "t", lazy.spawn(myTerm), desc="Terminal"),
     Key([mod], "b", lazy.spawn(myBrowser), desc="Web browser"),
     Key([mod, "shift"], "Return", lazy.spawn("thunar"), desc="File manager"),
     Key([mod, "shift"], "d", lazy.spawn("rofi -show drun"), desc="App launcher"),
     Key([mod, "shift"], "e", lazy.spawn("emacs"), desc="Doom Emacs"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod], "s", lazy.run_extension(extension.CommandSet(
-            commands = {
-            "reboot": "reboot",
-            "shutdown" : "shutdown",
-            },
-            dmenu_lines = 2
-    ))),
+
+    Key([mod],"s", lazy.spawn(home + "/.config/qtile/scripts/powermenu.sh"), desc="Open Powermenu"),
+    Key([mod], "return", lazy.group["scd"].dropdown_toggle("term")),
+    # Key([mod], "s", lazy.run_extension(extension.CommandSet(
+    #         commands = {
+    #         "reboot": "reboot",
+    #         "shutdown" : "shutdown",
+    #         },
+    #         dmenu_lines = 2
+    # ))),
 # Functions
     Key([mod], "m", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
@@ -127,6 +130,8 @@ def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
             qtile.cmd_to_screen(i + 1)
 
 
+### Scratchpads
+
 groups = []
 
 # FOR QWERTY KEYBOARDS
@@ -145,6 +150,9 @@ for i in range(len(group_names)):
             label=group_labels[i],
         ))
 
+
+
+
 for i in groups:
     keys.extend([
 
@@ -159,6 +167,13 @@ for i in groups:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name) , lazy.group[i.name].toscreen()),
     ])
 
+## Scratchpad
+groups.append(
+    ScratchPad("scd",[
+        DropDown("term", "alacritty", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False),
+    ]
+),
+),
 
 def init_layout_theme():
     return {"margin":10,
@@ -233,7 +248,7 @@ def init_widgets_list():
                         padding_x = 3,
                         borderwidth = 0,
                         disable_drag = True,
-                        active = colors[3],
+                        active = colors[1],
                         inactive = colors[0],
                         rounded = False,
                         highlight_method = "text",

@@ -59,7 +59,7 @@ super + shift + d
 
 # Brave Browser
 super + shift + b
-    brave 
+    brave-browser 
 
 # Mullvad Browser
 super + shift + v
@@ -83,7 +83,7 @@ super + shift + t
 
 #Xcfe4-TaskManager
 ctrl + shift + Escape
-    xfce4-taskmanager
+    alacritty -e htop
 
 
 #################################################################
