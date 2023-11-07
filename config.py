@@ -48,16 +48,17 @@ keys = [
 
 # The Essentials
     Key([mod], "r", lazy.spawncmd(), desc="Spawn prompt widget"),
-    Key([mod], "t", lazy.spawn(myTerm), desc="Terminal"),
+    Key([mod], "return", lazy.spawn(myTerm), desc="Terminal"),
     Key([mod], "b", lazy.spawn(myBrowser), desc="Web browser"),
     Key([mod, "shift"], "Return", lazy.spawn("thunar"), desc="File manager"),
-    Key([mod, "shift"], "d", lazy.spawn("rofi -show drun"), desc="App launcher"),
+    Key([mod], "slash", lazy.spawn("rofi -show drun"), desc="App launcher"),
     Key([mod, "shift"], "e", lazy.spawn("emacs"), desc="Doom Emacs"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
 
     Key([mod],"s", lazy.spawn(home + "/.config/qtile/scripts/powermenu.sh"), desc="Open Powermenu"),
-    Key([mod], "return", lazy.group["scd"].dropdown_toggle("term")),
+    Key([mod], "period", lazy.group["scd"].dropdown_toggle("term")),
+    Key([mod], "comma", lazy.group["scd"].dropdown_toggle("fox")),
     # Key([mod], "s", lazy.run_extension(extension.CommandSet(
     #         commands = {
     #         "reboot": "reboot",
@@ -171,6 +172,7 @@ for i in groups:
 groups.append(
     ScratchPad("scd",[
         DropDown("term", "alacritty", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False),
+        DropDown("fox", "firefox", x=0.12, y=0.02, width=0.75, height=0.6, on_focus_lost_hide=False),
     ]
 ),
 ),
@@ -248,7 +250,7 @@ def init_widgets_list():
                         padding_x = 3,
                         borderwidth = 0,
                         disable_drag = True,
-                        active = colors[1],
+                        active = colors[8],
                         inactive = colors[0],
                         rounded = False,
                         highlight_method = "text",
@@ -289,6 +291,28 @@ def init_widgets_list():
                         background = colors[1],
                         padding = 5,
                         linewidth = 1
+                        ),
+                widget.Pomodoro(
+                        font = myFontBold,
+                        fontsize = 15,
+                        foreground = colors[1],
+                        length_pomodoroi = 25,
+                        color_inactive = colors[1],
+                        color_active = colors[1],
+                        decorations = [
+                            RectDecoration (
+                                colour = colors[3],
+                                padding_y = 3,
+                                radius = 2,
+                                filled = True
+                            ),
+                        ],
+                ),
+               widget.Sep(
+                        linewidth = 1,
+                        padding = 5,
+                        foreground = colors[2],
+                        background = colors[1]
                         ),
                widget.Net(
                         foreground = colors[1],
@@ -379,7 +403,7 @@ def init_widgets_list():
                         background = colors[1],
                         font = myFontBold,
                         fontsize = 15,
-                        format = "%a %d %b %H:%M",
+                        format = "%a %d %b %I:%M %p",
                         decorations = [
                             RectDecoration (
                                 colour = colors[8],
@@ -414,28 +438,12 @@ def init_widgets_list():
                         icon_size = 20,
                         padding = 3
                 ),
-                widget.Sep(
-                        linewidth = 1,
-                        padding = 5,
-                        foreground = colors[2],
-                        background = colors[1] 
-                        ),
-                widget.Pomodoro(
-                        font = myFontBold,
-                        fontsize = 15,
-                        foreground = colors[1],
-                        length_pomodoroi = 25,
-                        color_inactive = colors[1],
-                        color_active = colors[1],
-                        decorations = [
-                            RectDecoration (
-                                colour = colors[3],
-                                padding_y = 3,
-                                radius = 2,
-                                filled = True
-                            ),
-                        ],
-                ),
+                # widget.Sep(
+                #         linewidth = 1,
+                #         padding = 5,
+                #         foreground = colors[2],
+                #         background = colors[1] 
+                #         ),
                 # widget.OpenWeather(
                 #         app_key = "4cf3731a25d1d1f4e4a00207afd451a2",
                 #         cityid = "4997193",
