@@ -531,6 +531,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='toolbar'),
     Match(wm_class='Arandr'),
     Match(wm_class='feh'),
+    Match(wm_class='Dunst'),
 
 ], fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True

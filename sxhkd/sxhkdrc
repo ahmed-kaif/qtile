@@ -21,6 +21,11 @@ super + Return
 
 super + t
     alacritty
+
+# File-Manager
+super + f
+    thunar
+
 # Xkill
 super + Escape
     xkill
@@ -41,9 +46,6 @@ super + l
 # SUPER + SHIFT KEYS
 ##############################
 
-# File-Manager
-super + shift + Return
-    thunar
 
 # dmenu
 super + shift + m
