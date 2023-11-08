@@ -179,7 +179,7 @@ groups.append(
 
 def init_layout_theme():
     return {"margin":10,
-            "border_width":2,
+            "border_width":3,
             "border_focus": "#5e81ac",
             "border_normal": "#2E3440"
             }

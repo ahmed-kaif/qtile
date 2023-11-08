@@ -13,10 +13,11 @@ option1="  lock"
 option2="  logout"
 option3="  reboot"
 option4="  power off"
+option5="󰒲  suspend"
 
 options="$option1\n"
 options="$options$option2\n"
-options="$options$option3\n$option4"
+options="$options$option3\n$option4\n$option5"
 
 choice=$(echo -e "$options" | rofi -dmenu -config ~/.config/rofi/config.rasi -i -no-show-icons -l 4 -width 30 -p "Powermenu") 
 
@@ -29,5 +30,7 @@ case $choice in
 		systemctl reboot ;;
 	$option4)
 		systemctl poweroff ;;
+	$option5)
+		systemctl suspend ;;
 esac
 
