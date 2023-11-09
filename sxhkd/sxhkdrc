@@ -40,7 +40,7 @@ super + p
 
 # Lockscreen
 super + l
-    betterlockscreen -l
+    slock
 
 ##############################
 # SUPER + SHIFT KEYS
@@ -49,7 +49,7 @@ super + l
 
 # dmenu
 super + shift + m
-    dmenu_run -i -nb '#2e3440' -nf '#81a1c1' -sb '#81a1c1' -sf '#2e3440' -fn 'SourceCodeProBoldFont:pixelsize=15'
+    dmenu_run -i -nb '#1e1e2e' -nf '#cdd6f4' -sb '#89dceb' -sf '#1e1e2e' -fn 'CaskaydiaCoveNerdFont:pixelsize=19'
 
 # Reload sxhkd:
 super + shift + s

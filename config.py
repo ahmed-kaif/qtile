@@ -292,28 +292,6 @@ def init_widgets_list():
                         padding = 5,
                         linewidth = 1
                         ),
-                widget.Pomodoro(
-                        font = myFontBold,
-                        fontsize = 15,
-                        foreground = colors[1],
-                        length_pomodoroi = 25,
-                        color_inactive = colors[1],
-                        color_active = colors[1],
-                        decorations = [
-                            RectDecoration (
-                                colour = colors[3],
-                                padding_y = 3,
-                                radius = 2,
-                                filled = True
-                            ),
-                        ],
-                ),
-               widget.Sep(
-                        linewidth = 1,
-                        padding = 5,
-                        foreground = colors[2],
-                        background = colors[1]
-                        ),
                widget.Net(
                         foreground = colors[1],
                         background = colors[1],
@@ -397,6 +375,28 @@ def init_widgets_list():
                         padding = 5,
                         background = colors[1],
                         foreground = colors[2]
+                        ),
+                widget.Pomodoro(
+                        font = myFontBold,
+                        fontsize = 15,
+                        foreground = colors[1],
+                        length_pomodoroi = 25,
+                        color_inactive = colors[1],
+                        color_active = colors[1],
+                        decorations = [
+                            RectDecoration (
+                                colour = colors[3],
+                                padding_y = 3,
+                                radius = 2,
+                                filled = True
+                            ),
+                        ],
+                ),
+               widget.Sep(
+                        linewidth = 1,
+                        padding = 5,
+                        foreground = colors[2],
+                        background = colors[1]
                         ),
                widget.Clock(
                         foreground = colors[1],
